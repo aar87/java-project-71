@@ -1,4 +1,4 @@
-package main.java.hexlet.code;
+package hexlet.code;
 
 public class App {
 
