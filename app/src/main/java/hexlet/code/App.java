@@ -1,15 +1,9 @@
 package hexlet.code;
 
-
-import com.fasterxml.jackson.core.type.TypeReference;
 import picocli.CommandLine;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.util.Map;
 import java.util.concurrent.Callable;
 
 
@@ -17,10 +11,10 @@ import java.util.concurrent.Callable;
         description = "Compares two configuration files and shows a difference.")
 public class App implements Callable<Integer> {
     @CommandLine.Parameters(index = "0", description = "path to first file")
-    private File firstFile;
+    public File firstFile;
 
     @CommandLine.Parameters(index = "1", description = "path to second file")
-    private File secondFile;
+    public File secondFile;
 
     @CommandLine.Option(
             names = {"-f", "--format"},
@@ -30,16 +24,10 @@ public class App implements Callable<Integer> {
     )
     private String format = "format";
 
-    public static Map<String, String> getData(byte[] data) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(data, new TypeReference<>() {});
-    }
 
     public Integer call() {
         try {
-            var firstFileData = getData(Files.readAllBytes(firstFile.toPath()));
-            var secondFileData = getData(Files.readAllBytes(secondFile.toPath()));
-            var result = Differ.generate(firstFileData, secondFileData);
+            var result = Differ.generate(firstFile, secondFile);
 
             System.out.println(result);
 
