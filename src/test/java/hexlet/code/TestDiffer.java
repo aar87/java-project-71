@@ -59,4 +59,28 @@ class TestDiffer {
 
         assertEquals(Differ.generate(sameFile, sameFile), emptyResult);
     }
+
+    @Test
+    void testNestedJsonDiffer() throws IOException {
+        Path resultPath = Path.of("src/test/resources/expected/nested.txt");
+        byte[] fileBytes = Files.readAllBytes(resultPath.toRealPath());
+        String correctResult = new String(fileBytes, StandardCharsets.UTF_8);
+
+        File firstFile = Path.of("src/test/resources/json/nested1.json").toFile();
+        File secondFile = Path.of("src/test/resources/json/nested2.json").toFile();
+
+        assertEquals(Differ.generate(firstFile, secondFile), correctResult);
+    }
+
+    @Test
+    void testNestedYamlDiffer() throws IOException {
+        Path resultPath = Path.of("src/test/resources/expected/nested.txt");
+        byte[] fileBytes = Files.readAllBytes(resultPath.toRealPath());
+        String correctResult = new String(fileBytes, StandardCharsets.UTF_8);
+
+        File firstFile = Path.of("src/test/resources/yaml/nested1.yaml").toFile();
+        File secondFile = Path.of("src/test/resources/yaml/nested2.yaml").toFile();
+
+        assertEquals(Differ.generate(firstFile, secondFile), correctResult);
+    }
 }
