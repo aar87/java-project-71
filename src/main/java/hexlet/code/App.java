@@ -32,7 +32,7 @@ public class App implements Callable<Integer> {
             System.out.println(result);
 
         } catch (IOException e) {
-            System.err.println("Failed to read files");
+            System.err.println("Failed to read files " + e.getMessage());
             System.exit(1);
         } catch (Exception e) {
             System.err.println("Application crashed: " + e.getMessage());

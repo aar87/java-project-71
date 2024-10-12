@@ -19,6 +19,7 @@ dependencies {
     annotationProcessor("info.picocli:picocli-codegen:4.7.6")
 
     implementation("com.fasterxml.jackson.core:jackson-databind:2.18.0")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.18.0")
 }
 
 tasks.test {

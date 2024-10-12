@@ -1,8 +1,14 @@
-run-build:
-	./build/install/app/bin/app
+install:
+	./gradlew install
 
-run-dist-help:
-	./build/install/app/bin/app -h
+run-help:
+	./build/install/java-project-71/bin/java-project-71 -h
+
+run-json:
+	./build/install/java-project-71/bin/java-project-71 "src/test/resources/file1.json" "src/test/resources/file2.json"
+
+run-yml:
+	./build/install/java-project-71/bin/java-project-71 "src/test/resources/yaml/file1.yaml" "src/test/resources/yaml/file2.yaml"
 
 lint:
 	./gradlew checkstyleTest
