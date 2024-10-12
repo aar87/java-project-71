@@ -6,5 +6,7 @@
 ### Gendiff 1.0
 
 #### Example generation diff between two json files
-
+##### Json differ
 [![asciicast](https://asciinema.org/a/qtXAY7kaG6LmKrEcp6Cu4QLKW.svg)](https://asciinema.org/a/qtXAY7kaG6LmKrEcp6Cu4QLKW)
+##### Yaml differ
+[![asciicast](https://asciinema.org/a/iBiZssToMmGmfPrVchYDzBKuF.svg)](https://asciinema.org/a/iBiZssToMmGmfPrVchYDzBKuF)
