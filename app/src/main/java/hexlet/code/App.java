@@ -30,7 +30,7 @@ public class App implements Callable<Integer> {
     )
     private String format = "format";
 
-    public static Map<String, Object> getData(byte[] data) throws IOException {
+    public static Map<String, String> getData(byte[] data) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readValue(data, new TypeReference<>() {});
     }
@@ -39,15 +39,15 @@ public class App implements Callable<Integer> {
         try {
             var firstFileData = getData(Files.readAllBytes(firstFile.toPath()));
             var secondFileData = getData(Files.readAllBytes(secondFile.toPath()));
+            var result = Differ.generate(firstFileData, secondFileData);
 
-            System.out.println(firstFileData);
-            System.out.println(secondFileData);
+            System.out.println(result);
 
         } catch (IOException e) {
             System.err.println("Failed to read files");
             System.exit(1);
         } catch (Exception e) {
-            System.err.println("Application crashed");
+            System.err.println("Application crashed: " + e.getMessage());
             System.exit(2);
         }
 
