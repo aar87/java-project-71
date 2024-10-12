@@ -16,12 +16,12 @@ jobs:
       - uses: gradle/gradle-build-action@v3
         with:
           gradle-version: 8.7
-      - run: cd app && ./gradlew checkstyleMain
-      - run: cd app && ./gradlew test
+      - run: ./gradlew checkstyleMain
+      - run: ./gradlew test
       - uses: paambaati/codeclimate-action@v9.0.0
         env:
          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
          JACOCO_SOURCE_PATH: ${{github.workspace}}/src/main/java
         with:
-         coverageCommand: cd app && make report
+         coverageCommand: make report
          coverageLocations: ${{github.workspace}}/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
