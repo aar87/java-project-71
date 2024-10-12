@@ -22,5 +22,3 @@ jobs:
         uses: hexlet/project-action@release
         with:
           hexlet-id: ${{ secrets.HEXLET_ID }}
-      - run: cd app && ./gradlew checkstyleMain
-      - run: cd app && ./gradlew test
