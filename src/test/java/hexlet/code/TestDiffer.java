@@ -1,6 +1,7 @@
 package hexlet.code;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 
 import org.junit.jupiter.api.Test;
@@ -10,8 +11,37 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Map;
 
 class TestDiffer {
+
+    @Test
+    void testSafeCompare() {
+        String emptyText = "";
+        String text = "some text string";
+        int zero = 0;
+        int negative = -10;
+        int positive = 11;
+        String[] names = new String[]{"some", "test", "values"};
+        int[] values = new int[]{2, 4, 8, -10};
+        Map<String, Integer> map = Map.of("test", 1, "test2", 10);
+
+        assertEquals(true, Differ.safeCompare(emptyText, emptyText));
+        assertEquals(true, Differ.safeCompare(text, text));
+        assertEquals(true, Differ.safeCompare(zero, zero));
+        assertEquals(true, Differ.safeCompare(negative, negative));
+        assertEquals(true, Differ.safeCompare(positive, positive));
+        assertEquals(true, Differ.safeCompare(names, names));
+        assertEquals(true, Differ.safeCompare(values, values));
+        assertEquals(true, Differ.safeCompare(map, map));
+        assertEquals(true, Differ.safeCompare(null, null));
+
+        assertNotEquals(true, Differ.safeCompare(emptyText, zero));
+        assertNotEquals(true, Differ.safeCompare(emptyText, negative));
+        assertNotEquals(true, Differ.safeCompare(text, names));
+        assertNotEquals(true, Differ.safeCompare(values, names));
+        assertNotEquals(true, Differ.safeCompare(names, map));
+    }
 
     @Test
     void testGenerate() throws IOException {

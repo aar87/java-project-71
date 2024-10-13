@@ -22,12 +22,12 @@ public class App implements Callable<Integer> {
             showDefaultValue = CommandLine.Help.Visibility.ALWAYS,
             defaultValue = "stylish"
     )
-    private String format = "format";
+    private String format;
 
 
     public Integer call() {
         try {
-            var result = Differ.generate(firstFile, secondFile);
+            var result = Differ.generate(firstFile, secondFile, format);
 
             System.out.println(result);
 
