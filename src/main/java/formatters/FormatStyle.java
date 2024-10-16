@@ -1,5 +1,7 @@
 package formatters;
 
+import java.io.IOException;
+
 public interface FormatStyle {
     String addStart();
     String addEnd();
@@ -7,4 +9,5 @@ public interface FormatStyle {
     String remove(String key, Object value);
     String update(String keyFrom, Object valueFrom, Object valueTo);
     String noChange(String key, Object value);
+    String finalize(String result) throws IOException;
 }

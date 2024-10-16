@@ -36,7 +36,7 @@ public class Differ {
         result.append(formatter.addStart());
 
         for (String key: total) {
-            String value = "  ";
+            String value;
 
             if (firstMap.containsKey(key)) {
                 if (secondMap.containsKey(key)) {
@@ -57,7 +57,7 @@ public class Differ {
 
         result.append(formatter.addEnd());
 
-        return result.toString().trim();
+        return formatter.finalize(result.toString());
     }
 
     public static String generate(File firstFile, File secondFile) throws IOException {

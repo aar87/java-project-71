@@ -37,4 +37,9 @@ public class Stylish implements FormatStyle {
     public String noChange(String key, Object value) {
         return INDENT_VALUE + "  " + key + ": " + cleanValue(value) + System.lineSeparator();
     }
+
+    @Override
+    public String finalize(String result) {
+        return result.trim();
+    }
 }

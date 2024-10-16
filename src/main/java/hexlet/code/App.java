@@ -22,14 +22,14 @@ public class App implements Callable<Integer> {
             showDefaultValue = CommandLine.Help.Visibility.ALWAYS,
             defaultValue = "stylish"
     )
-    private String format;
+    public String format;
 
 
     public Integer call() {
         try {
-            var result = Differ.generate(firstFile, secondFile, format);
+            var diff = Differ.generate(firstFile, secondFile, format);
 
-            System.out.println(result);
+            System.out.println(diff);
 
         } catch (IOException e) {
             System.err.println("Failed to read files " + e.getMessage());

@@ -51,4 +51,9 @@ public class Plain implements FormatStyle {
     public String noChange(String key, Object value) {
         return "";
     }
+
+    @Override
+    public String finalize(String result) {
+        return result.trim();
+    }
 }

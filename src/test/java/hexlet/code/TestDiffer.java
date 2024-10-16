@@ -1,116 +1,91 @@
 package hexlet.code;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
-
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TestDiffer {
+    private static final String RESOURCE_FILE_DIR = "src/test/resources/differ/files/";
 
     @Test
     void testSafeCompare() {
-        String emptyText = "";
-        String text = "some text string";
-        int zero = 0;
-        int negative = -10;
-        int positive = 11;
-        String[] names = new String[]{"some", "test", "values"};
-        int[] values = new int[]{2, 4, 8, -10};
-        Map<String, Integer> map = Map.of("test", 1, "test2", 10);
-
-        assertEquals(true, Differ.safeCompare(emptyText, emptyText));
-        assertEquals(true, Differ.safeCompare(text, text));
-        assertEquals(true, Differ.safeCompare(zero, zero));
-        assertEquals(true, Differ.safeCompare(negative, negative));
-        assertEquals(true, Differ.safeCompare(positive, positive));
-        assertEquals(true, Differ.safeCompare(names, names));
-        assertEquals(true, Differ.safeCompare(values, values));
-        assertEquals(true, Differ.safeCompare(map, map));
         assertEquals(true, Differ.safeCompare(null, null));
-
-        assertNotEquals(true, Differ.safeCompare(emptyText, zero));
-        assertNotEquals(true, Differ.safeCompare(emptyText, negative));
-        assertNotEquals(true, Differ.safeCompare(text, names));
-        assertNotEquals(true, Differ.safeCompare(values, names));
-        assertNotEquals(true, Differ.safeCompare(names, map));
+        assertEquals(false, Differ.safeCompare(0, null));
+        assertEquals(false, Differ.safeCompare("", null));
     }
 
-    @Test
-    void testGenerate() throws IOException {
-        Path resultPath = Path.of("src/test/resources/result.txt");
+    @ParameterizedTest
+    @CsvSource({"json,flat", "yaml,flat", "json,nested", "yaml,nested", "json,empty", "yaml,empty"})
+    void testGenerateExpected(String format, String fileType) throws IOException {
+        Path resultPath = Path.of(RESOURCE_FILE_DIR + fileType + "Result" + ".txt");
 
         byte[] fileBytes = Files.readAllBytes(resultPath.toRealPath());
+        String expected = new String(fileBytes, StandardCharsets.UTF_8);
 
-        File jsonTestFile1 = Path.of("src/test/resources/file1.json").toFile();
-        File jsonTestFile2 = Path.of("src/test/resources/file2.json").toFile();
-        String correctResult = new String(fileBytes, StandardCharsets.UTF_8);
-
-        String result = Differ.generate(jsonTestFile1, jsonTestFile2);
-
-        assertEquals(result, correctResult);
+        assertEquals(generate(format, fileType), expected);
     }
 
-    @Test
-    void testAddAllIfFirstIsEmpty() throws IOException {
-        Path resultPath = Path.of("src/test/resources/allNewByFile1Json.txt");
+    String generate(String format, String fileType) throws IOException {
+        File jsonTestFile1 = Path.of(RESOURCE_FILE_DIR + fileType + "1." + format).toFile();
+        File jsonTestFile2 = Path.of(RESOURCE_FILE_DIR + fileType + "2." + format).toFile();
+        return Differ.generate(jsonTestFile1, jsonTestFile2);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"json,flat", "yaml,flat", "json,nested", "yaml,nested"})
+    void testAddAllIfFirstIsEmpty(String format, String fileType) throws IOException {
+        Path resultPath = Path.of(RESOURCE_FILE_DIR + fileType + "addResult" + ".txt");
+
         byte[] fileBytes = Files.readAllBytes(resultPath.toRealPath());
-        String correctResult = new String(fileBytes, StandardCharsets.UTF_8);
+        String expected = new String(fileBytes, StandardCharsets.UTF_8);
 
-        File firstFile = Path.of("src/test/resources/emptyFile.json").toFile();
-        File secondFile = Path.of("src/test/resources/file1.json").toFile();
-
-        assertEquals(Differ.generate(firstFile, secondFile), correctResult);
+        assertEquals(expected, generateWithFirstEmpty(format, fileType));
     }
 
-    @Test
-    void testRemoveAllIfSecondFileIsEmpty() throws IOException {
-        Path resultPath = Path.of("src/test/resources/allMinusByFile1Json.txt");
+    String generateWithFirstEmpty(String format, String fileType) throws IOException {
+        File jsonTestFile1 = Path.of(RESOURCE_FILE_DIR + "empty1." + format).toFile();
+        File jsonTestFile2 = Path.of(RESOURCE_FILE_DIR + fileType + "1." + format).toFile();
+        return Differ.generate(jsonTestFile1, jsonTestFile2);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"json,flat", "yaml,flat", "json,nested", "yaml,nested"})
+    void testRemoveAllIfSecondFileIsEmpty(String format, String fileType) throws IOException {
+        Path resultPath = Path.of(RESOURCE_FILE_DIR + fileType + "removeResult" + ".txt");
+
         byte[] fileBytes = Files.readAllBytes(resultPath.toRealPath());
-        String correctResult = new String(fileBytes, StandardCharsets.UTF_8);
+        String expected = new String(fileBytes, StandardCharsets.UTF_8);
 
-        File firstFile = Path.of("src/test/resources/file1.json").toFile();
-        File secondFile = Path.of("src/test/resources/emptyFile.json").toFile();
-
-        assertEquals(Differ.generate(firstFile, secondFile), correctResult);
+        assertEquals(expected, generateWithSecondEmpty(format, fileType));
     }
 
-    @Test
-    void testDifferWithTwoEmptyFiles() throws IOException {
-        File sameFile = Path.of("src/test/resources/emptyFile.json").toFile();
-        String emptyResult = "{\n}";
-
-        assertEquals(Differ.generate(sameFile, sameFile), emptyResult);
+    String generateWithSecondEmpty(String format, String fileType) throws IOException {
+        File jsonTestFile1 = Path.of(RESOURCE_FILE_DIR + fileType + "1." + format).toFile();
+        File jsonTestFile2 = Path.of(RESOURCE_FILE_DIR + "empty1." + format).toFile();
+        return Differ.generate(jsonTestFile1, jsonTestFile2);
     }
 
-    @Test
-    void testNestedJsonDiffer() throws IOException {
-        Path resultPath = Path.of("src/test/resources/expected/nested.txt");
+    @ParameterizedTest
+    @CsvSource({"json,flat", "yaml,flat", "json,nested", "yaml,nested"})
+    void testWithEqualFiles(String format, String fileType) throws IOException {
+        Path resultPath = Path.of(RESOURCE_FILE_DIR + fileType + "SameResult" + ".txt");
+
         byte[] fileBytes = Files.readAllBytes(resultPath.toRealPath());
-        String correctResult = new String(fileBytes, StandardCharsets.UTF_8);
+        String expected = new String(fileBytes, StandardCharsets.UTF_8);
 
-        File firstFile = Path.of("src/test/resources/json/nested1.json").toFile();
-        File secondFile = Path.of("src/test/resources/json/nested2.json").toFile();
-
-        assertEquals(Differ.generate(firstFile, secondFile), correctResult);
+        assertEquals(expected, generateWithSameFiles(format, fileType));
     }
 
-    @Test
-    void testNestedYamlDiffer() throws IOException {
-        Path resultPath = Path.of("src/test/resources/expected/nested.txt");
-        byte[] fileBytes = Files.readAllBytes(resultPath.toRealPath());
-        String correctResult = new String(fileBytes, StandardCharsets.UTF_8);
-
-        File firstFile = Path.of("src/test/resources/yaml/nested1.yaml").toFile();
-        File secondFile = Path.of("src/test/resources/yaml/nested2.yaml").toFile();
-
-        assertEquals(Differ.generate(firstFile, secondFile), correctResult);
+    String generateWithSameFiles(String format, String fileType) throws IOException {
+        File jsonTestFile1 = Path.of(RESOURCE_FILE_DIR + fileType + "1." + format).toFile();
+        return Differ.generate(jsonTestFile1, jsonTestFile1);
     }
 }

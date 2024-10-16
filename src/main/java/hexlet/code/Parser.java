@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Parser {
@@ -41,6 +42,10 @@ public class Parser {
     public static Map<String, Object> process(File file) throws IOException {
         Path path = file.toPath();
         byte[] fileBytes = Files.readAllBytes(file.toPath());
+
+        if (file.length() == 0) {
+            return new HashMap<>();
+        }
 
         ObjectMapper objectMapper = getMapper(path.getFileName().toString());
         return objectMapper.readValue(fileBytes, new TypeReference<>() { });

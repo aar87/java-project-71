@@ -13,6 +13,9 @@ run-json-plain:
 run-json-nested:
 	./build/install/java-project-71/bin/java-project-71 "src/test/resources/json/nested1.json" "src/test/resources/json/nested2.json"
 
+run-json-formatter:
+	./build/install/java-project-71/bin/java-project-71 -f json "src/test/resources/file1.json" "src/test/resources/file2.json"
+
 run-json-nested-plain:
 	./build/install/java-project-71/bin/java-project-71 "src/test/resources/json/nested1.json" "src/test/resources/json/nested2.json" -f plain
 
