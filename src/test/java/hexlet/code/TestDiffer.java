@@ -6,8 +6,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,11 +23,7 @@ class TestDiffer {
     @ParameterizedTest
     @CsvSource({"json,flat", "yaml,flat", "json,nested", "yaml,nested", "json,empty", "yaml,empty"})
     void testGenerateExpected(String format, String fileType) throws IOException {
-        Path resultPath = Path.of(RESOURCE_FILE_DIR + fileType + "Result" + ".txt");
-
-        byte[] fileBytes = Files.readAllBytes(resultPath);
-        String expected = new String(fileBytes, StandardCharsets.UTF_8);
-
+        String expected = Utils.readFromFileLocation(RESOURCE_FILE_DIR + fileType + "Result" + ".txt");
         assertEquals(generate(format, fileType), expected);
     }
 
@@ -42,11 +36,7 @@ class TestDiffer {
     @ParameterizedTest
     @CsvSource({"json,flat", "yaml,flat", "json,nested", "yaml,nested"})
     void testAddAllIfFirstIsEmpty(String format, String fileType) throws IOException {
-        Path resultPath = Path.of(RESOURCE_FILE_DIR + fileType + "addResult" + ".txt");
-
-        byte[] fileBytes = Files.readAllBytes(resultPath);
-        String expected = new String(fileBytes, StandardCharsets.UTF_8);
-
+        String expected = Utils.readFromFileLocation(RESOURCE_FILE_DIR + fileType + "addResult" + ".txt");
         assertEquals(expected, generateWithFirstEmpty(format, fileType));
     }
 
@@ -59,11 +49,7 @@ class TestDiffer {
     @ParameterizedTest
     @CsvSource({"json,flat", "yaml,flat", "json,nested", "yaml,nested"})
     void testRemoveAllIfSecondFileIsEmpty(String format, String fileType) throws IOException {
-        Path resultPath = Path.of(RESOURCE_FILE_DIR + fileType + "removeResult" + ".txt").toFile().getAbsoluteFile().toPath();
-
-        byte[] fileBytes = Files.readAllBytes(resultPath);
-        String expected = new String(fileBytes, StandardCharsets.UTF_8);
-
+        String expected = Utils.readFromFileLocation(RESOURCE_FILE_DIR + fileType + "removeResult" + ".txt");
         assertEquals(expected, generateWithSecondEmpty(format, fileType));
     }
 
@@ -76,11 +62,7 @@ class TestDiffer {
     @ParameterizedTest
     @CsvSource({"json,flat", "yaml,flat", "json,nested", "yaml,nested"})
     void testWithEqualFiles(String format, String fileType) throws IOException {
-        Path resultPath = Path.of(RESOURCE_FILE_DIR + fileType + "SameResult" + ".txt");
-
-        byte[] fileBytes = Files.readAllBytes(resultPath);
-        String expected = new String(fileBytes, StandardCharsets.UTF_8);
-
+        String expected = Utils.readFromFileLocation(RESOURCE_FILE_DIR + fileType + "SameResult" + ".txt");
         assertEquals(expected, generateWithSameFiles(format, fileType));
     }
 
