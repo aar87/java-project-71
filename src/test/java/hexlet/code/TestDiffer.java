@@ -59,7 +59,7 @@ class TestDiffer {
     @ParameterizedTest
     @CsvSource({"json,flat", "yaml,flat", "json,nested", "yaml,nested"})
     void testRemoveAllIfSecondFileIsEmpty(String format, String fileType) throws IOException {
-        Path resultPath = Path.of(RESOURCE_FILE_DIR + fileType + "removeResult" + ".txt").toRealPath();
+        Path resultPath = Path.of(RESOURCE_FILE_DIR + fileType + "removeResult" + ".txt").toFile().getAbsoluteFile().toPath();
 
         byte[] fileBytes = Files.readAllBytes(resultPath);
         String expected = new String(fileBytes, StandardCharsets.UTF_8);
