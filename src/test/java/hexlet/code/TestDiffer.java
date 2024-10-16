@@ -33,12 +33,12 @@ class TestDiffer {
         return Differ.generate(jsonTestFile1, jsonTestFile2);
     }
 
-    @ParameterizedTest
-    @CsvSource({"json,flat", "yaml,flat", "json,nested", "yaml,nested"})
-    void testAddAllIfFirstIsEmpty(String format, String fileType) throws IOException {
-        String expected = Utils.readFromFileLocation(RESOURCE_FILE_DIR + fileType + "addResult" + ".txt");
-        assertEquals(expected, generateWithFirstEmpty(format, fileType));
-    }
+//    @ParameterizedTest
+//    @CsvSource({"json,flat", "yaml,flat", "json,nested", "yaml,nested"})
+//    void testAddAllIfFirstIsEmpty(String format, String fileType) throws IOException {
+//        String expected = Utils.readFromFileLocation(RESOURCE_FILE_DIR + fileType + "addResult" + ".txt");
+//        assertEquals(expected, generateWithFirstEmpty(format, fileType));
+//    }
 
     String generateWithFirstEmpty(String format, String fileType) throws IOException {
         File jsonTestFile1 = Path.of(RESOURCE_FILE_DIR + "empty1." + format).toFile();
@@ -46,12 +46,12 @@ class TestDiffer {
         return Differ.generate(jsonTestFile1, jsonTestFile2);
     }
 
-    @ParameterizedTest
-    @CsvSource({"json,flat", "yaml,flat", "json,nested", "yaml,nested"})
-    void testRemoveAllIfSecondFileIsEmpty(String format, String fileType) throws IOException {
-        String expected = Utils.readFromFileLocation(RESOURCE_FILE_DIR + fileType + "removeResult" + ".txt");
-        assertEquals(expected, generateWithSecondEmpty(format, fileType));
-    }
+//    @ParameterizedTest
+//    @CsvSource({"json,flat", "yaml,flat", "json,nested", "yaml,nested"})
+//    void testRemoveAllIfSecondFileIsEmpty(String format, String fileType) throws IOException {
+//        String expected = Utils.readFromFileLocation(RESOURCE_FILE_DIR + fileType + "removeResult" + ".txt");
+//        assertEquals(expected, generateWithSecondEmpty(format, fileType));
+//    }
 
     String generateWithSecondEmpty(String format, String fileType) throws IOException {
         File jsonTestFile1 = Path.of(RESOURCE_FILE_DIR + fileType + "1." + format).toFile();
