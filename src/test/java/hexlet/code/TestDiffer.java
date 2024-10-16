@@ -27,7 +27,7 @@ class TestDiffer {
     void testGenerateExpected(String format, String fileType) throws IOException {
         Path resultPath = Path.of(RESOURCE_FILE_DIR + fileType + "Result" + ".txt");
 
-        byte[] fileBytes = Files.readAllBytes(resultPath.toRealPath());
+        byte[] fileBytes = Files.readAllBytes(resultPath);
         String expected = new String(fileBytes, StandardCharsets.UTF_8);
 
         assertEquals(generate(format, fileType), expected);
@@ -61,7 +61,7 @@ class TestDiffer {
     void testRemoveAllIfSecondFileIsEmpty(String format, String fileType) throws IOException {
         Path resultPath = Path.of(RESOURCE_FILE_DIR + fileType + "removeResult" + ".txt");
 
-        byte[] fileBytes = Files.readAllBytes(resultPath.toRealPath());
+        byte[] fileBytes = Files.readAllBytes(resultPath);
         String expected = new String(fileBytes, StandardCharsets.UTF_8);
 
         assertEquals(expected, generateWithSecondEmpty(format, fileType));
@@ -78,7 +78,7 @@ class TestDiffer {
     void testWithEqualFiles(String format, String fileType) throws IOException {
         Path resultPath = Path.of(RESOURCE_FILE_DIR + fileType + "SameResult" + ".txt");
 
-        byte[] fileBytes = Files.readAllBytes(resultPath.toRealPath());
+        byte[] fileBytes = Files.readAllBytes(resultPath);
         String expected = new String(fileBytes, StandardCharsets.UTF_8);
 
         assertEquals(expected, generateWithSameFiles(format, fileType));
