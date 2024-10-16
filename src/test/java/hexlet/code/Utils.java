@@ -6,8 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class Utils {
-    public static String readFromFileLocation(String fileLocation) throws IOException {
-        Path resultPath = Path.of(fileLocation).toAbsolutePath().normalize();
+    public static String readFromFileLocation(String location) throws IOException {
+        Path resultPath = Path.of(System.getProperty("user.dir") + "/" + location).toAbsolutePath().normalize();
         byte[] fileBytes = Files.readAllBytes(resultPath);
         return new String(fileBytes, StandardCharsets.UTF_8);
     }
