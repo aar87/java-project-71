@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 
-public class Json implements FormatStyle{
+public class Json implements FormatStyle {
     @Override
     public String addStart() {
         return "{";
@@ -32,7 +32,6 @@ public class Json implements FormatStyle{
     public String update(String keyFrom, Object valueFrom, Object valueTo) {
         return "";
     }
-
     @Override
     public String noChange(String key, Object value) {
         return "";
@@ -40,7 +39,7 @@ public class Json implements FormatStyle{
 
     @Override
     public String finalize(String result) throws IOException {
-        result = result.trim().replace(",}","}");
+        result = result.trim().replace(",}", "}");
 
         ObjectMapper mapper = new ObjectMapper();
         JsonFactory factory = mapper.getFactory();
