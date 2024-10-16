@@ -44,7 +44,7 @@ class TestDiffer {
     void testAddAllIfFirstIsEmpty(String format, String fileType) throws IOException {
         Path resultPath = Path.of(RESOURCE_FILE_DIR + fileType + "addResult" + ".txt");
 
-        byte[] fileBytes = Files.readAllBytes(resultPath.toRealPath());
+        byte[] fileBytes = Files.readAllBytes(resultPath);
         String expected = new String(fileBytes, StandardCharsets.UTF_8);
 
         assertEquals(expected, generateWithFirstEmpty(format, fileType));
