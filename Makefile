@@ -1,26 +1,31 @@
+APP_DIR=/Users/antonraevsky/IdeaProjects/java-project-71
+RUN=./build/install/java-project-71/bin/java-project-71
+FILE_SRC=$(APP_DIR)/src/test/resources/differ/files
+
 install:
 	./gradlew install
 
 run-help:
-	./build/install/java-project-71/bin/java-project-71 -h
+	$(RUN) -h
 
 run-json:
-	./build/install/java-project-71/bin/java-project-71 "src/test/resources/file1.json" "src/test/resources/file2.json"
+	cd $(APP_DIR)
+	$(RUN) $(FILE_SRC)/flat1.json $(FILE_SRC)/flat2.json
 
 run-json-plain:
-	./build/install/java-project-71/bin/java-project-71 "src/test/resources/file1.json" "src/test/resources/file2.json" -f plain
+	$(RUN) $(FILE_SRC)/flat1.json $(FILE_SRC)/flat2.json -f plain
 
 run-json-nested:
-	./build/install/java-project-71/bin/java-project-71 "src/test/resources/json/nested1.json" "src/test/resources/json/nested2.json"
+	$(RUN) $(FILE_SRC)/nested1.json $(FILE_SRC)/nested2.json
 
 run-json-formatter:
-	./build/install/java-project-71/bin/java-project-71 -f json "src/test/resources/file1.json" "src/test/resources/file2.json"
+	$(RUN) -f json $(FILE_SRC)/flat1.json $(FILE_SRC)/flat2.json
 
 run-json-nested-plain:
-	./build/install/java-project-71/bin/java-project-71 "src/test/resources/json/nested1.json" "src/test/resources/json/nested2.json" -f plain
+	$(RUN) $(FILE_SRC)/nested1.json $(FILE_SRC)/nested2.json -f plain
 
 run-yml:
-	./build/install/java-project-71/bin/java-project-71 "src/test/resources/yaml/file1.yaml" "src/test/resources/yaml/file2.yaml"
+	$(RUN) $(FILE_SRC)/flat1.yaml $(FILE_SRC)/flat2.yaml
 
 lint:
 	./gradlew checkstyleTest
@@ -32,4 +37,4 @@ test:
 report:
 	./gradlew jacocoTestReport
 
-.PHONY: run-dist
+.PHONY: install

@@ -23,7 +23,7 @@ public class Plain implements FormatStyle {
 
     @Override
     public String addStart() {
-        return "\n";
+        return System.lineSeparator();
     }
 
     @Override
