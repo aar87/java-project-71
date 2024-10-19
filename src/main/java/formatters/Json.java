@@ -20,17 +20,20 @@ public class Json implements FormatStyle {
 
     @Override
     public String add(String key, Object value) {
-        return "\"" + key + "\":" + "\"+ " + value.toString() + "\",";
+        String row = "{\"state\":" + "\"add\", \"value\": \"" + value + "\"}";
+        return "\"" + key + "\":" + row + ",";
     }
 
     @Override
     public String remove(String key, Object value) {
-        return "\"" + key + "\":" + "\"- " + value.toString() + "\",";
+        String row = "{\"state\":" + "\"remove\", \"value\": \"" + value + "\"}";
+        return "\"" + key + "\":" + row + ",";
     }
 
     @Override
     public String update(String keyFrom, Object valueFrom, Object valueTo) {
-        return "";
+        String row = "{\"state\":" + "\"update\", \"from\": \"" + valueFrom + "\"" + ", \"to\": \"" + valueTo + "\"}";
+        return "\"" + keyFrom + "\":" + row + ",";
     }
 
     @Override

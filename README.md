@@ -7,6 +7,12 @@
 
 #### Example generation diff between two json files
 ##### Json differ
-[![asciicast](https://asciinema.org/a/qtXAY7kaG6LmKrEcp6Cu4QLKW.svg)](https://asciinema.org/a/qtXAY7kaG6LmKrEcp6Cu4QLKW)
+[![asciicast](https://asciinema.org/a/U4dxBFaEVK7I2q2WrbK693Vi5.svg)](https://asciinema.org/a/U4dxBFaEVK7I2q2WrbK693Vi5)
 ##### Yaml differ
-[![asciicast](https://asciinema.org/a/iBiZssToMmGmfPrVchYDzBKuF.svg)](https://asciinema.org/a/iBiZssToMmGmfPrVchYDzBKuF)
+[![asciicast](https://asciinema.org/a/OdIVHd0kH6c36h2d9frElPcMy.svg)](https://asciinema.org/a/OdIVHd0kH6c36h2d9frElPcMy)
+##### Stylish formatter output nested structure
+[![asciicast](https://asciinema.org/a/oZmWgCXnHuWRaRLjSb9zhG8Di.svg)](https://asciinema.org/a/oZmWgCXnHuWRaRLjSb9zhG8Di)
+##### Plain formatter output nested structure
+[![asciicast](https://asciinema.org/a/Xwnw11cB8gefEhqfDa7IZHQzu.svg)](https://asciinema.org/a/Xwnw11cB8gefEhqfDa7IZHQzu)
+##### Json formatter output flat structure
+[![asciicast](https://asciinema.org/a/joWferzDtNwxgYxJuTZPo2jor.svg)](https://asciinema.org/a/joWferzDtNwxgYxJuTZPo2jor)

@@ -26,20 +26,28 @@ public class TestJson {
     public void testAdd() {
         String resultAdd = JSON_FORMATTER.add(Utils.KEY_STRING, Utils.VALUE_STRING);
         assertTrue(isValidJson(resultAdd));
-        assertTrue(resultAdd.contains("+"));
+        assertTrue(resultAdd.contains("state"));
+        assertTrue(resultAdd.contains("add"));
+        assertTrue(resultAdd.contains("value"));
     }
 
     @Test
     public void testRemove() {
         String removed = JSON_FORMATTER.remove(Utils.KEY_STRING, Utils.VALUE_STRING);
         assertTrue(isValidJson(removed));
-        assertTrue(removed.contains("-"));
+        assertTrue(removed.contains("state"));
+        assertTrue(removed.contains("remove"));
+        assertTrue(removed.contains("value"));
     }
 
     @Test
     public void testUpdate() {
         String updated = JSON_FORMATTER.update(Utils.KEY_STRING, Utils.VALUE_STRING, Utils.SECOND_VALUE_STRING);
-        assertEquals("", updated);
+        assertTrue(isValidJson(updated));
+        assertTrue(updated.contains("state"));
+        assertTrue(updated.contains("update"));
+        assertTrue(updated.contains("from"));
+        assertTrue(updated.contains("to"));
     }
 
     @Test

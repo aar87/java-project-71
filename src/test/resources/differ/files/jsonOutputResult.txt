@@ -1,4 +1,15 @@
 {
-  "key2" : "- fromValue",
-  "key3" : "+ toValue"
+  "key1" : {
+    "state" : "update",
+    "from" : "fromValue",
+    "to" : "toValue"
+  },
+  "key2" : {
+    "state" : "remove",
+    "value" : "fromValue"
+  },
+  "key3" : {
+    "state" : "add",
+    "value" : "toValue"
+  }
 }
