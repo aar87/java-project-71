@@ -2,9 +2,6 @@ APP_DIR=$(PWD)
 RUN=./build/install/java-project-71/bin/java-project-71
 FILE_SRC=$(APP_DIR)/src/test/resources/differ/files
 
-install:
-	@./gradlew install
-
 build:
 	@./gradlew clean build
 
