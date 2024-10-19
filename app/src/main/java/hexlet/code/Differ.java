@@ -3,7 +3,6 @@ package hexlet.code;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
@@ -21,22 +20,6 @@ public class Differ {
         }
 
         return first.equals(second);
-    }
-
-    public static boolean isComplex(Object value) {
-        if (value == null) {
-            return false;
-        }
-
-        return value instanceof Map || value instanceof List;
-    }
-
-    public static String valueToString(Object value) {
-        if (value == null) {
-            return "null";
-        }
-
-        return value.toString();
     }
 
     public static ArrayList<DiffDTO> createDiff(String[] keys, Map<String, Object> from, Map<String, Object> to) {
