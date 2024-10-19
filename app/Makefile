@@ -1,5 +1,5 @@
 APP_DIR=$(PWD)
-RUN=./build/install/java-project-71/bin/java-project-71
+RUN=./build/install/app/bin/app
 FILE_SRC=$(APP_DIR)/src/test/resources/differ/files
 
 build:

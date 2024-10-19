@@ -30,10 +30,10 @@ class TestFormatter {
     @ValueSource(strings = {"stylish", "plain", "json"})
     void testOutputFormat(String outputFormat) throws IOException {
         ArrayList<DiffDTO> diffs = new ArrayList<>();
-        diffs.add(new DiffDTO(DiffType.UPDATED, "key1", "fromValue", "toValue", false));
-        diffs.add(new DiffDTO(DiffType.REMOVED, "key2", "fromValue", "toValue", false));
-        diffs.add(new DiffDTO(DiffType.ADDED, "key3", "fromValue", "toValue", false));
-        diffs.add(new DiffDTO(DiffType.UNCHANGED, "key4", "fromValue", "toValue", false));
+        diffs.add(new DiffDTO(DiffType.UPDATED, "key1", "fromValue", "toValue"));
+        diffs.add(new DiffDTO(DiffType.REMOVED, "key2", "fromValue", "toValue"));
+        diffs.add(new DiffDTO(DiffType.ADDED, "key3", "fromValue", "toValue"));
+        diffs.add(new DiffDTO(DiffType.UNCHANGED, "key4", "fromValue", "toValue"));
 
         FormatStyle formatter = Formatter.build(outputFormat);
         String result = Formatter.format(diffs, formatter);

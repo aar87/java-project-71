@@ -10,7 +10,6 @@ import lombok.AllArgsConstructor;
 public class DiffDTO {
     private DiffType state;
     private final String key;
-    private final String fromValue;
-    private final String toValue;
-    private boolean isComplex;
+    private final Object fromValue;
+    private final Object toValue;
 }

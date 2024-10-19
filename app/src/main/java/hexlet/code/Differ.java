@@ -42,19 +42,16 @@ public class Differ {
     public static ArrayList<DiffDTO> createDiff(String[] keys, Map<String, Object> from, Map<String, Object> to) {
         ArrayList<DiffDTO> diffs = new ArrayList<>();
         for (String key: keys) {
-            String fromValue = valueToString(from.get(key));
-            String toValue = valueToString(to.get(key));
-            DiffDTO diff = new DiffDTO(DiffType.UNCHANGED, key, fromValue, toValue, false);
+            Object fromValue = from.get(key);
+            Object toValue = to.get(key);
+            DiffDTO diff = new DiffDTO(DiffType.UNCHANGED, key, fromValue, toValue);
 
             if (from.containsKey(key) && to.containsKey(key) && !safeCompare(from.get(key), to.get(key))) {
                 diff.setState(DiffType.UPDATED);
-                diff.setComplex(isComplex(to.get(key)));
             } else if (to.containsKey(key) && !from.containsKey(key)) {
                 diff.setState(DiffType.ADDED);
-                diff.setComplex(isComplex(from.get(key)));
             } else if (from.containsKey(key) && !to.containsKey(key)) {
                 diff.setState(DiffType.REMOVED);
-                diff.setComplex(isComplex(to.get(key)));
             }
             diffs.add(diff);
         }
