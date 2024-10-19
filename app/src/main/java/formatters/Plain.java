@@ -3,7 +3,7 @@ package formatters;
 import java.util.List;
 import java.util.Map;
 
-public class Plain implements FormatStyle {
+public final class Plain implements FormatStyle {
     private static final String INDENT_VALUE = "Property ";
 
     private String prepareValue(Object value) {

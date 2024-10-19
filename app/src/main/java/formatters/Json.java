@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 
-public class Json implements FormatStyle {
+public final class Json implements FormatStyle {
     @Override
     public String addStart() {
         return "{";

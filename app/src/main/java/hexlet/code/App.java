@@ -8,12 +8,12 @@ import java.util.concurrent.Callable;
 
 @CommandLine.Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 1.0",
         description = "Compares two configuration files and shows a difference.")
-public class App implements Callable<Integer> {
+public final class App implements Callable<Integer> {
     @CommandLine.Parameters(index = "0", description = "path to first file")
-    public String firstFile;
+    private String firstFile;
 
     @CommandLine.Parameters(index = "1", description = "path to second file")
-    public String secondFile;
+    private String secondFile;
 
     @CommandLine.Option(
             names = {"-f", "--format"},
@@ -21,8 +21,7 @@ public class App implements Callable<Integer> {
             showDefaultValue = CommandLine.Help.Visibility.ALWAYS,
             defaultValue = "stylish"
     )
-    public String format;
-
+    private String format;
 
     public Integer call() {
         try {

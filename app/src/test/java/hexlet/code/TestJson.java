@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TestJson {
+public final class TestJson {
     private static final Json JSON_FORMATTER = new Json();
 
     @Test
@@ -64,7 +64,7 @@ public class TestJson {
         assertNotEquals(',', finalString.charAt(finalString.length() - 2));
     }
 
-    public boolean isValidJson(String jsonString) {
+    private boolean isValidJson(String jsonString) {
         boolean hasEndSemicolon = jsonString.charAt(jsonString.length() - 1) == ',';
         return jsonString.contains(Utils.KEY_STRING)
                 && jsonString.contains(Utils.VALUE_STRING)

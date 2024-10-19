@@ -1,7 +1,7 @@
 package formatters;
 
 
-public class Stylish implements FormatStyle {
+public final class Stylish implements FormatStyle {
     private static final String INDENT_VALUE = "  ";
 
     private String cleanValue(Object value) {

@@ -6,8 +6,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TestStylish {
+public final class TestStylish {
     private static final Stylish STYLISH_FORMATTER = new Stylish();
+    private static final int REPEAT_COUNT = 5;
 
     @Test
     public void testAddStart() {
@@ -50,11 +51,11 @@ public class TestStylish {
     @Test
     public void testFinalize() {
         String result = Utils.KEY_STRING + ":" + Utils.VALUE_STRING + System.lineSeparator();
-        String finalString = STYLISH_FORMATTER.finalize(result.repeat(5));
-        assertEquals(result.repeat(5).trim(), finalString);
+        String finalString = STYLISH_FORMATTER.finalize(result.repeat(REPEAT_COUNT));
+        assertEquals(result.repeat(REPEAT_COUNT).trim(), finalString);
     }
 
-    public boolean isValidStylish(String value) {
+    private boolean isValidStylish(String value) {
         boolean hasNewLine = String.valueOf(value.charAt(value.length() - 1)).equals(System.lineSeparator());
         return value.contains(Utils.KEY_STRING)
                 && value.contains(Utils.VALUE_STRING)

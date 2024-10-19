@@ -6,8 +6,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TestPlain {
+public final class TestPlain {
     private static final Plain PLAIN_FORMATTER = new Plain();
+    private static final int REPEAT_COUNT = 5;
 
     @Test
     public void testAddStart() {
@@ -50,11 +51,11 @@ public class TestPlain {
     @Test
     public void testFinalize() {
         String result = Utils.KEY_STRING + ":" + Utils.VALUE_STRING + System.lineSeparator();
-        String finalString = PLAIN_FORMATTER.finalize(result.repeat(5));
-        assertEquals(result.repeat(5).trim(), finalString);
+        String finalString = PLAIN_FORMATTER.finalize(result.repeat(REPEAT_COUNT));
+        assertEquals(result.repeat(REPEAT_COUNT).trim(), finalString);
     }
 
-    public boolean isValidPlain(String value) {
+    private boolean isValidPlain(String value) {
         boolean hasNewLine = String.valueOf(value.charAt(value.length() - 1)).equals(System.lineSeparator());
         return value.contains(Utils.KEY_STRING)
                 && value.contains(Utils.VALUE_STRING)
