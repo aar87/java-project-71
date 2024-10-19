@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 
@@ -26,8 +25,8 @@ class TestDiffer {
     }
 
     String generate(String format, String fileType) throws IOException {
-        File file1 = Path.of(Utils.RESOURCE_FILE_DIR + fileType + "1." + format).toFile();
-        File file2 = Path.of(Utils.RESOURCE_FILE_DIR + fileType + "2." + format).toFile();
+        Path file1 = Path.of(Utils.RESOURCE_FILE_DIR + fileType + "1." + format);
+        Path file2 = Path.of(Utils.RESOURCE_FILE_DIR + fileType + "2." + format);
         return Differ.generate(file1, file2);
     }
 
@@ -39,8 +38,8 @@ class TestDiffer {
     }
 
     String generateWithFirstEmpty(String format, String fileType) throws IOException {
-        File file1 = Path.of(Utils.RESOURCE_FILE_DIR + "empty1." + format).toFile();
-        File file2 = Path.of(Utils.RESOURCE_FILE_DIR + fileType + "1." + format).toFile();
+        Path file1 = Path.of(Utils.RESOURCE_FILE_DIR + "empty1." + format);
+        Path file2 = Path.of(Utils.RESOURCE_FILE_DIR + fileType + "1." + format);
         return Differ.generate(file1, file2);
     }
 
@@ -52,8 +51,8 @@ class TestDiffer {
     }
 
     String generateWithSecondEmpty(String format, String fileType) throws IOException {
-        File file1 = Path.of(Utils.RESOURCE_FILE_DIR + fileType + "1." + format).toFile();
-        File file2 = Path.of(Utils.RESOURCE_FILE_DIR + "empty1." + format).toFile();
+        Path file1 = Path.of(Utils.RESOURCE_FILE_DIR + fileType + "1." + format);
+        Path file2 = Path.of(Utils.RESOURCE_FILE_DIR + "empty1." + format);
         return Differ.generate(file1, file2);
     }
 
@@ -65,7 +64,7 @@ class TestDiffer {
     }
 
     String generateWithSameFiles(String format, String fileType) throws IOException {
-        File jsonTestFile1 = Path.of(Utils.RESOURCE_FILE_DIR + fileType + "1." + format).toFile();
-        return Differ.generate(jsonTestFile1, jsonTestFile1);
+        Path sameFilePath = Path.of(Utils.RESOURCE_FILE_DIR + fileType + "1." + format);
+        return Differ.generate(sameFilePath, sameFilePath);
     }
 }

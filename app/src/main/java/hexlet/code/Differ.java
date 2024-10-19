@@ -1,7 +1,7 @@
 package hexlet.code;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -62,9 +62,9 @@ public class Differ {
         return diffs;
     }
 
-    public static String generate(File firstFile, File secondFile, String format) throws IOException {
-        Map<String, Object> firstMap = Parser.process(firstFile);
-        Map<String, Object> secondMap = Parser.process(secondFile);
+    public static String generate(Path firstFile, Path secondFile, String format) throws IOException {
+        Map<String, Object> firstMap = Parser.process(firstFile.toAbsolutePath().normalize().toFile());
+        Map<String, Object> secondMap = Parser.process(secondFile.toAbsolutePath().normalize().toFile());
 
         var f1 = new ArrayList<>(firstMap.keySet());
         var f2 = new ArrayList<>(secondMap.keySet());
@@ -75,7 +75,7 @@ public class Differ {
         return Formatter.format(diffsList, formatter);
     }
 
-    public static String generate(File firstFile, File secondFile) throws IOException {
+    public static String generate(Path firstFile, Path secondFile) throws IOException {
         return generate(firstFile, secondFile, Formatter.STYLISH_FORMATTER);
     }
 }
