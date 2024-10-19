@@ -5,7 +5,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.io.IOException;
-import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -25,8 +24,8 @@ class TestDiffer {
     }
 
     String generate(String format, String fileType) throws IOException {
-        Path file1 = Path.of(Utils.RESOURCE_FILE_DIR + fileType + "1." + format);
-        Path file2 = Path.of(Utils.RESOURCE_FILE_DIR + fileType + "2." + format);
+        String file1 = Utils.RESOURCE_FILE_DIR + fileType + "1." + format;
+        String file2 = Utils.RESOURCE_FILE_DIR + fileType + "2." + format;
         return Differ.generate(file1, file2);
     }
 
@@ -38,8 +37,8 @@ class TestDiffer {
     }
 
     String generateWithFirstEmpty(String format, String fileType) throws IOException {
-        Path file1 = Path.of(Utils.RESOURCE_FILE_DIR + "empty1." + format);
-        Path file2 = Path.of(Utils.RESOURCE_FILE_DIR + fileType + "1." + format);
+        String file1 = Utils.RESOURCE_FILE_DIR + "empty1." + format;
+        String file2 = Utils.RESOURCE_FILE_DIR + fileType + "1." + format;
         return Differ.generate(file1, file2);
     }
 
@@ -51,8 +50,8 @@ class TestDiffer {
     }
 
     String generateWithSecondEmpty(String format, String fileType) throws IOException {
-        Path file1 = Path.of(Utils.RESOURCE_FILE_DIR + fileType + "1." + format);
-        Path file2 = Path.of(Utils.RESOURCE_FILE_DIR + "empty1." + format);
+        String file1 = Utils.RESOURCE_FILE_DIR + fileType + "1." + format;
+        String file2 = Utils.RESOURCE_FILE_DIR + "empty1." + format;
         return Differ.generate(file1, file2);
     }
 
@@ -64,7 +63,7 @@ class TestDiffer {
     }
 
     String generateWithSameFiles(String format, String fileType) throws IOException {
-        Path sameFilePath = Path.of(Utils.RESOURCE_FILE_DIR + fileType + "1." + format);
+        String sameFilePath = Utils.RESOURCE_FILE_DIR + fileType + "1." + format;
         return Differ.generate(sameFilePath, sameFilePath);
     }
 }

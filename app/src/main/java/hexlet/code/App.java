@@ -3,7 +3,6 @@ package hexlet.code;
 import picocli.CommandLine;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.concurrent.Callable;
 
 
@@ -27,7 +26,7 @@ public class App implements Callable<Integer> {
 
     public Integer call() {
         try {
-            var diff = Differ.generate(Paths.get(firstFile), Paths.get(secondFile), format);
+            var diff = Differ.generate(firstFile, secondFile, format);
 
             System.out.println(diff);
 
