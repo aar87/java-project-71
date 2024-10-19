@@ -1,0 +1,3 @@
+Property 'key1' was updated. From 'fromValue' to 'toValue'
+Property 'key2' was removed
+Property 'key3' was added with value: 'toValue'

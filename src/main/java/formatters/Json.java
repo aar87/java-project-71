@@ -32,6 +32,7 @@ public class Json implements FormatStyle {
     public String update(String keyFrom, Object valueFrom, Object valueTo) {
         return "";
     }
+
     @Override
     public String noChange(String key, Object value) {
         return "";

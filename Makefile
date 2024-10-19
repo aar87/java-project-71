@@ -1,4 +1,4 @@
-APP_DIR=/Users/antonraevsky/IdeaProjects/java-project-71
+APP_DIR=$(PWD)
 RUN=./build/install/java-project-71/bin/java-project-71
 FILE_SRC=$(APP_DIR)/src/test/resources/differ/files
 
@@ -9,7 +9,6 @@ run-help:
 	$(RUN) -h
 
 run-json:
-	cd $(APP_DIR)
 	$(RUN) $(FILE_SRC)/flat1.json $(FILE_SRC)/flat2.json
 
 run-json-plain:

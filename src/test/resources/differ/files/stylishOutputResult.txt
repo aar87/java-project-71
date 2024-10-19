@@ -1,0 +1,7 @@
+{
+  - key1: fromValue
+  + key1: toValue
+  - key2: fromValue
+  + key3: toValue
+    key4: fromValue
+}

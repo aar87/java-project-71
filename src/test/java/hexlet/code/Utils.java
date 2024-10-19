@@ -10,9 +10,12 @@ public class Utils {
     public static final String KEY_STRING = "key";
     public static final String VALUE_STRING = "value";
     public static final String SECOND_VALUE_STRING = "value2";
+    public static final String RESOURCE_FILE_DIR = "src/test/resources/differ/files/";
 
-    public static String readFromFileLocation(String location) throws IOException {
-        Path resultPath = Paths.get(System.getProperty("user.dir") + "/" + location).toAbsolutePath().normalize();
+    public static String readFromResourceLocation(String location) throws IOException {
+        Path resultPath = Paths.get(System.getProperty("user.dir") + "/" + RESOURCE_FILE_DIR + location)
+                .toAbsolutePath()
+                .normalize();
         byte[] fileBytes = Files.readAllBytes(resultPath);
         return new String(fileBytes, StandardCharsets.UTF_8);
     }
