@@ -10,4 +10,10 @@ test:
 report:
 	make -C app report
 
+clean:
+	make -C app clean
+
+install:
+	make -C app clean install
+
 .PHONY: build

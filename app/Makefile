@@ -18,6 +18,12 @@ test:
 report:
 	@./gradlew jacocoTestReport
 
+clean:
+	@./gradlew clean
+
+install:
+	@./gradlew clean install
+
 run-help:
 	$(RUN) -h
 
