@@ -3,7 +3,20 @@ RUN=./build/install/java-project-71/bin/java-project-71
 FILE_SRC=$(APP_DIR)/src/test/resources/differ/files
 
 install:
-	./gradlew install
+	@./gradlew install
+
+build:
+	@./gradlew clean build
+
+lint:
+	@./gradlew checkstyleTest
+	@./gradlew checkstyleMain
+
+test:
+	@./gradlew test
+
+report:
+	@./gradlew jacocoTestReport
 
 run-help:
 	$(RUN) -h
@@ -26,14 +39,4 @@ run-json-nested-plain:
 run-yml:
 	$(RUN) $(FILE_SRC)/flat1.yaml $(FILE_SRC)/flat2.yaml
 
-lint:
-	./gradlew checkstyleTest
-	./gradlew checkstyleMain
-
-test:
-	./gradlew test
-
-report:
-	./gradlew jacocoTestReport
-
-.PHONY: install
+.PHONY: build
