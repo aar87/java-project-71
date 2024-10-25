@@ -1,15 +1,29 @@
-{
-  "key1" : {
-    "state" : "update",
-    "from" : "fromValue",
-    "to" : "toValue"
-  },
-  "key2" : {
-    "state" : "remove",
-    "value" : "fromValue"
-  },
-  "key3" : {
-    "state" : "add",
-    "value" : "toValue"
-  }
-}
+[ {
+  "fromIsComplex" : false,
+  "toIsComplex" : false,
+  "from" : "fromValue",
+  "state" : "UPDATED",
+  "to" : "toValue",
+  "key" : "key1"
+}, {
+  "fromIsComplex" : false,
+  "toIsComplex" : false,
+  "from" : "fromValue",
+  "state" : "REMOVED",
+  "to" : "toValue",
+  "key" : "key2"
+}, {
+  "fromIsComplex" : false,
+  "toIsComplex" : false,
+  "from" : "fromValue",
+  "state" : "ADDED",
+  "to" : "toValue",
+  "key" : "key3"
+}, {
+  "fromIsComplex" : false,
+  "toIsComplex" : false,
+  "from" : "fromValue",
+  "state" : "UNCHANGED",
+  "to" : "toValue",
+  "key" : "key4"
+} ]

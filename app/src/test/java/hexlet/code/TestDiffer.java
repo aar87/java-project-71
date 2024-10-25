@@ -1,6 +1,5 @@
 package hexlet.code;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -9,13 +8,6 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TestDiffer {
-    @Test
-    void testSafeCompare() {
-        assertEquals(true, Differ.safeCompare(null, null));
-        assertEquals(false, Differ.safeCompare(0, null));
-        assertEquals(false, Differ.safeCompare("", null));
-    }
-
     @ParameterizedTest
     @CsvSource({"json,flat", "yaml,flat", "json,nested", "yaml,nested", "json,empty", "yaml,empty"})
     void testGenerateExpected(String format, String fileType) throws IOException {
