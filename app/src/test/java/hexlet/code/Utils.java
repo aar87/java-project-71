@@ -7,9 +7,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Utils {
-    public static final String KEY_STRING = "key";
-    public static final String VALUE_STRING = "value";
-    public static final String SECOND_VALUE_STRING = "value2";
     public static final String RESOURCE_FILE_DIR = "src/test/resources/differ/files/";
 
     public static String readFromResourceLocation(String location) throws IOException {

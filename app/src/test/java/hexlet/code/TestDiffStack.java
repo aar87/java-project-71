@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class TestDiffStack {
+    public static final int TEST_NUMBER_VALUE = 10;
 
     @Test
     void testSafeCompare() {
@@ -22,7 +23,7 @@ public class TestDiffStack {
         assertFalse(DiffStack.isComplex(null));
         assertFalse(DiffStack.isComplex(""));
         assertFalse(DiffStack.isComplex("a"));
-        assertFalse(DiffStack.isComplex(10));
+        assertFalse(DiffStack.isComplex(TEST_NUMBER_VALUE));
         assertFalse(DiffStack.isComplex(true));
         assertFalse(DiffStack.isComplex(false));
         assertTrue(DiffStack.isComplex(new HashMap<>()));
