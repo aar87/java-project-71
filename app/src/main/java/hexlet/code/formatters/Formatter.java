@@ -1,7 +1,7 @@
 package hexlet.code.formatters;
 
 
-public class Formatter {
+public final class Formatter {
     public static final String STYLISH_FORMATTER = "stylish";
     public static final String PLAIN_FORMATTER = "plain";
     public static final String JSON_FORMATTER = "json";

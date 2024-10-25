@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import hexlet.code.formatters.Formatter;
 
-public class Differ {
+public final class Differ {
     public static String generate(String firstFile, String secondFile, String format) throws IOException {
         Map<String, Object> firstMap = Parser.process(Paths.get(firstFile).toAbsolutePath().normalize().toFile());
         Map<String, Object> secondMap = Parser.process(Paths.get(secondFile).toAbsolutePath().normalize().toFile());

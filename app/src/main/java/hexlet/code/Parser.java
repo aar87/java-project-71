@@ -12,7 +12,7 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Parser {
+public final class Parser {
     public static final String YAML_FILE_TYPE = "yaml";
     public static final String YML_FILE_TYPE = "yml";
     public static final String JSON_FILE_TYPE = "json";
