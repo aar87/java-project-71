@@ -9,10 +9,6 @@ import java.util.Map;
 public final class Stylish implements FormatStyle {
     private static final String INDENT_VALUE = " ";
 
-    private String cleanValue(Object value) {
-        return String.valueOf(value);
-    }
-
     private String getRow(String sign, String key, String value) {
         return INDENT_VALUE.repeat(2) + sign + INDENT_VALUE + key + ":" + INDENT_VALUE + value + System.lineSeparator();
     }
@@ -24,8 +20,8 @@ public final class Stylish implements FormatStyle {
 
         for (Map<String, Object> diff : diffList) {
             String key = diff.get("key").toString();
-            String from = cleanValue(diff.get("from"));
-            String to = cleanValue(diff.get("to"));
+            String from = String.valueOf(diff.get("from"));
+            String to = String.valueOf(diff.get("to"));
 
             String row = switch (diff.get("state")) {
                 case DiffStack.State.UPDATED -> getRow("-", key, from) + getRow("+", key, to);
